@@ -1,0 +1,11 @@
+---
+
+- name: "Incluindo tasks para clonar repositórios públicos do GitHub"
+  when: git_pass is not defined
+  include_tasks: "not_git_pass.yml"
+
+
+
+- name: "Incluindo tasks para clonar repositórios privados do GitHub"
+  when: git_pass is defined
+  include_tasks: "git_pass.yml"
