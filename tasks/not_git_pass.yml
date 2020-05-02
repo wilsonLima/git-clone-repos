@@ -1,7 +1,7 @@
 ---
 
 
-- name: "Baixando repositórios de {{ git_hub_url }}/{{ git_username }} para {{ local_repos_root }}"
+- name: "Baixando repositórios de {{ git_root_url }}/{{ git_username }} para {{ local_repos_root }}"
   git:
     repo: '{{ url_protocol }}://{{ git_root_url }}/{{ git_username }}/{{ item }}.git'
     dest: '{{ local_repos_root }}/{{ item }}'
