@@ -2,7 +2,10 @@
 
 
 - name: "Baixando repositórios privados de {{ git_root_url }}/{{ git_username }} para {{ local_repos_root }}"
-  git:
-    repo: '{{ url_protocol }}://{{ git_username | urlencode }}:{{ git_pass | urlencode }}@{{ git_root_url }}/{{ git_username }}/{{ item }}.git'
-    dest: '{{ local_repos_root }}/{{ item }}'
+  expect:
+    command: 'git clone {{ url_protocol }}://{{ git_root_url }}/{{ git_username }}/{{ item }}.git {{ local_repos_root }}/{{ item }}'
+    responses:
+      Username: "{{ git_username }}" # Username is a regex
+      Password: "{{ git_pass }}" # Password is a regex
+  ignore_errors: yes
   with_items: "{{ repo_names }}"
